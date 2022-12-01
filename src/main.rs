@@ -24,5 +24,9 @@ fn main() -> io::Result<()> {
 
     println!("{:?}", elfs);
 
+    /* figure out elf with max calories */
+    let max_index = elfs.iter().enumerate().max_by_key(|val| val.1).unwrap();
+    println!("{:?}", max_index);
+
     Ok(())
 }
