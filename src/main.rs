@@ -39,6 +39,10 @@ fn main() -> io::Result<()> {
         }
     }
     println!("{:?}", top);
+    
+    // overcomplicate this!
+    let sum = top.iter().fold(0, |sum, elf| sum + elf.1);
+    println!("{}", sum);
 
     Ok(())
 }
