@@ -1,0 +1,8 @@
+[package]
+name = "aoc22_1"
+version = "0.1.0"
+authors = ["Jan Haan <jan@sinnfrei.xyz>"]
+edition = "2021"
+description = "my solution to https://adventofcode.com/2022/day/1"
+
+[dependencies]
