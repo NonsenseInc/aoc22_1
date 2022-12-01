@@ -28,20 +28,34 @@ fn main() -> io::Result<()> {
     //println!("{:?}", max_index);
 
     /* figure out top three elfs by calories (part 2 answer) */
-    let mut top = [(0, 0), (0, 0), (0, 0)];
-    'elfs: for (index, elf) in elfs.iter().enumerate() {
-        for one in &mut top {
-            if elf > &one.1 {
-                one.0 = index;
-                one.1 = *elf;
-                continue 'elfs;
+    let mut top = [0; 3];
+
+    fn push_max(v: i32, s: &mut [i32]) {
+        match s {
+            [] => return,
+            [x] => {
+                if v > *x {
+                    *x = v;
+                }
+            },
+            _ => {
+                if v > s[0] {
+                    push_max(s[0], &mut s[1..]);
+                    s[0] = v;
+                } else {
+                    push_max(v, &mut s[1..]);
+                }
             }
         }
+    }
+
+    for elf in elfs {
+        push_max(elf, &mut top);
     }
     println!("{:?}", top);
     
     // overcomplicate this!
-    let sum = top.iter().fold(0, |sum, elf| sum + elf.1);
+    let sum = top.iter().fold(0, |sum, elf| sum + elf);
     println!("{}", sum);
 
     Ok(())
